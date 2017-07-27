@@ -1,0 +1,4 @@
+export PIG_HOME=/usr/local/pig
+export PATH=$PATH:$PIG_HOME/bin
+export CLASSPATH=$CLASSPATH:/usr/local/pig/lib/*:.
+export PIG_CLASSPATH=$HADOOP_HOME/etc/hadoop
