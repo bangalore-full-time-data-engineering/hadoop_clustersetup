@@ -1,5 +1,6 @@
 #!/bin/sh
 
 cd /root
-cat clientips.txt >> /etc/hosts
+cat cluster.txt >> /etc/hosts
+cat client.txt >> /etc/hosts
 

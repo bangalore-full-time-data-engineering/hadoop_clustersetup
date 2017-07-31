@@ -1,5 +1,4 @@
 #!/bin/sh
 
 cd /root
-cat clusterips.txt >> /etc/hosts
-
+cat cluster.txt >> /etc/hosts

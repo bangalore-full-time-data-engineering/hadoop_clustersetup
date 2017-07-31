@@ -8,13 +8,15 @@ export MASTER_PUBLIC_IP=$3
 scp installjava.sh root@$SLAVE1_PUBLIC_IP:/root
 scp bashopts.txt root@$SLAVE1_PUBLIC_IP:/root
 scp updatehostsmaster.sh root@$SLAVE1_PUBLIC_IP:/root
-scp clusterips.txt root@$SLAVE1_PUBLIC_IP:/root
+scp cluster.txt root@$SLAVE1_PUBLIC_IP:/root
 
-#scp root@$MASTER_PUBLIC_IP:/root/.ssh/id_rsa.pub root@$SLAVE1_PUBLIC_IP:/root/master_ssh.key
+scp root@$MASTER_PUBLIC_IP:/root/.ssh/id_rsa.pub master_ssh.key 
+scp master_ssh.key root@$SLAVE1_PUBLIC_IP:/root/master_ssh.key
 
 ssh root@$SLAVE1_PUBLIC_IP /root/installjava.sh
 ssh root@$SLAVE1_PUBLIC_IP /root/updatehostsmaster.sh
-#ssh root@$SLAVE1_PUBLIC_IP cat /root/master_ssh.key >> /root/.ssh/authorized_keys
+
+ssh root@$SLAVE1_PUBLIC_IP 'cat /root/master_ssh.key >> /root/.ssh/authorized_keys'
 ssh root@$SLAVE1_PUBLIC_IP mkdir -p /usr/local/hadoop_work/hdfs/datanode
 ssh root@$SLAVE1_PUBLIC_IP mkdir -p /usr/local/hadoop_work/yarn/local
 ssh root@$SLAVE1_PUBLIC_IP mkdir -p /usr/local/hadoop_work/yarn/log
@@ -27,12 +29,13 @@ scp installjava.sh root@$SLAVE2_PUBLIC_IP:/root
 scp bashopts.txt root@$SLAVE2_PUBLIC_IP:/root
 
 scp updatehostsmaster.sh root@$SLAVE2_PUBLIC_IP:/root
-scp clusterips.txt root@$SLAVE2_PUBLIC_IP:/root
-#scp root@$MASTER_PUBLIC_IP:/root/.ssh/id_rsa.pub root@$SLAVE2_PUBLIC_IP:/root/master_ssh.key
+scp cluster.txt root@$SLAVE2_PUBLIC_IP:/root
+
+scp master_ssh.key root@$SLAVE2_PUBLIC_IP:/root/master_ssh.key
 
 ssh root@$SLAVE2_PUBLIC_IP /root/installjava.sh
 ssh root@$SLAVE2_PUBLIC_IP /root/updatehostsmaster.sh
-#ssh root@$SLAVE2_PUBLIC_IP cat /root/master_ssh.key >> /root/.ssh/authorized_keys
+ssh root@$SLAVE2_PUBLIC_IP 'cat /root/master_ssh.key >> /root/.ssh/authorized_keys'
 ssh root@$SLAVE2_PUBLIC_IP mkdir -p /usr/local/hadoop_work/hdfs/datanode
 ssh root@$SLAVE2_PUBLIC_IP mkdir -p /usr/local/hadoop_work/yarn/local
 ssh root@$SLAVE2_PUBLIC_IP mkdir -p /usr/local/hadoop_work/yarn/log
